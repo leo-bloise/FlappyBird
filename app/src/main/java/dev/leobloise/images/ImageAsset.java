@@ -1,6 +1,7 @@
 package dev.leobloise.images;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,5 +36,8 @@ public abstract class ImageAsset {
     public int getHeight() {
         if (image == null) read();
         return image.getHeight();
+    }
+    public Dimension getDimension() {
+        return new Dimension(getWidth(), getHeight());
     }
 }
