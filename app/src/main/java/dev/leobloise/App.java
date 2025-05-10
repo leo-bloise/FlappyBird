@@ -1,32 +1,25 @@
 package dev.leobloise;
 
-import dev.leobloise.components.Bird;
 import dev.leobloise.components.GameCanvas;
-import dev.leobloise.images.ImageAsset;
 import dev.leobloise.windows.MainWindow;
-import java.util.Collections;
+
+import java.util.Arrays;
 
 public class App {
-    private static Bird createBird(AssetsBuilder assetsBuilder) {
-        BirdBuilder birdBuilder = new BirdBuilder(assetsBuilder);
-        Bird bird = birdBuilder.build();
-        birdBuilder = null;
-        return bird;
-    }
     public static void main(String[] args) {
         AssetsBuilder assetsBuilder = new AssetsBuilder();
-        Bird bird = createBird(assetsBuilder);
-        ImageAsset background = assetsBuilder.buildBackground();
-        GameCanvas gameCanvas = new GameCanvas(background, Collections.singletonList(bird));
+        BirdBuilder birdBuilder = new BirdBuilder(assetsBuilder);
+        GameCanvas gameCanvas = new GameCanvas(Arrays.asList(assetsBuilder.buildBackground(), birdBuilder.build()));
         GameThread gameThread = new GameThread(
-                bird,
-                gameCanvas
+                gameCanvas,
+                Arrays.asList(assetsBuilder.buildBackground(), birdBuilder.build())
         );
         MainWindow mainWindow = new MainWindow(
-                background.getDimension(),
+                assetsBuilder.buildBackground().getDimension(),
                 gameCanvas
         );
         assetsBuilder = null;
+        birdBuilder = null;
         mainWindow.display();
         System.gc();
         gameThread.start();

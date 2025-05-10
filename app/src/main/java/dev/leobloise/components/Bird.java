@@ -1,11 +1,12 @@
 package dev.leobloise.components;
 
+import dev.leobloise.entities.Moveable;
 import dev.leobloise.images.ImageAsset;
 
 import java.awt.*;
 import java.awt.image.ImageObserver;
 
-public class Bird implements Renderable {
+public class Bird implements Moveable {
     private int x = 0;
     private int y = 0;
     private final ImageAsset birdMidFlap;

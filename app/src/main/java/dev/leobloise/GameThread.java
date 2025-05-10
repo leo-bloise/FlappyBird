@@ -1,20 +1,21 @@
 package dev.leobloise;
+import dev.leobloise.entities.Moveable;
 
-import dev.leobloise.components.Bird;
 import java.awt.*;
+import java.util.Collection;
 
 public class GameThread extends Thread {
-    private final Bird bird;
     private final Canvas canvas;
+    private final Collection<Moveable> moveables;
     public GameThread(
-            Bird bird,
-            Canvas gameCanvas
+            Canvas gameCanvas,
+            Collection<Moveable> moveables
     ) {
-        this.bird = bird;
         this.canvas = gameCanvas;
+        this.moveables = moveables;
     }
     private synchronized void update() {
-        bird.move();
+        moveables.forEach(Moveable::move);
     }
     private void render() {
         canvas.repaint();

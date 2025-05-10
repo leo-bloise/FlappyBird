@@ -1,13 +1,13 @@
 package dev.leobloise;
 
-import dev.leobloise.images.Background;
+import dev.leobloise.components.Background;
 import dev.leobloise.images.BirdMidFlap;
 import dev.leobloise.images.ImageAsset;
 
 public class AssetsBuilder {
-    private ImageAsset background;
+    private Background background;
     private ImageAsset birdMidFlap;
-    public ImageAsset buildBackground() {
+    public Background buildBackground() {
         if (background != null) return background;
         background = new Background("background.png");
         return background;

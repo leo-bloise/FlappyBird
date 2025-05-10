@@ -1,4 +1,4 @@
-package dev.leobloise.components;
+package dev.leobloise.entities;
 
 import java.awt.*;
 

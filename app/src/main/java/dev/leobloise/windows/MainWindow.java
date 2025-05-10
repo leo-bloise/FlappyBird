@@ -1,6 +1,5 @@
 package dev.leobloise.windows;
 
-import dev.leobloise.images.ImageAsset;
 import dev.leobloise.windows.listeners.ClosingWindowListner;
 
 import java.awt.*;
