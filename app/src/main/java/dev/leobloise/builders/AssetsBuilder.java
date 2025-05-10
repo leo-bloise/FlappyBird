@@ -1,4 +1,4 @@
-package dev.leobloise;
+package dev.leobloise.builders;
 
 import dev.leobloise.components.Background;
 import dev.leobloise.images.BirdMidFlap;

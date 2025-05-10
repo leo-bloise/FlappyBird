@@ -1,5 +1,7 @@
 package dev.leobloise;
 
+import dev.leobloise.builders.AssetsBuilder;
+import dev.leobloise.builders.BirdBuilder;
 import dev.leobloise.components.GameCanvas;
 import dev.leobloise.windows.MainWindow;
 
