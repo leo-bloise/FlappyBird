@@ -14,7 +14,7 @@ public class MainWindow extends Frame {
         setUpListeners();
     }
     private void setUp() {
-        setSize(800, 800);
+        setSize(background.getWidth(), background.getHeight());
     }
     private void setUpListeners() {
         addWindowListener(new ClosingWindowListner(true));
