@@ -39,11 +39,11 @@ public class Bird implements Moveable {
     }
     @Override
     public void renderOn(Graphics g) {
-        BufferedImage img = birdUpFlap.read();
+        BufferedImage img = birdUpFlap.read(-30);
         if (speed == 0) {
             img = birdMidFlap.read();
         } else if (speed > 0) {
-            img = birdDownFlap.read();
+            img = birdDownFlap.read(30);
         }
         g.drawImage(img, x, y, new ImageObserver() {
             @Override

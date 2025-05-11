@@ -1,5 +1,7 @@
 package dev.leobloise.images;
 
+import dev.leobloise.utils.Assets;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,6 +26,12 @@ public abstract class ImageAsset {
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
         }
+    }
+    public BufferedImage read(int rotate) {
+        if (image != null) return image;
+        read();
+        image = Assets.rotate(image, rotate);
+        return image;
     }
     @Override
     public String toString() {
