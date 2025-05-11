@@ -17,7 +17,13 @@ public class AddPipeGreenAction implements GameAction {
         PipeGreen pipeGreen = PipeGreenFactory.getInstance().create();
         pipes.add(pipeGreen);
         gameCanvas.addToCanvas(pipeGreen);
-        System.out.println(pipes.size());
+    }
+    private void removeOutofBoundsPipe() {
+        PipeGreen first = pipes.peekFirst();
+        if (first == null) return;
+        if (first.getX() <= (-1 * pipeGreenReference.getWidth())) {
+            pipes.removeFirst();
+        }
     }
     @Override
     public synchronized void execute() {
@@ -31,5 +37,6 @@ public class AddPipeGreenAction implements GameAction {
         if (pipeX < twoPipesWidth) {
             createPipe();
         }
+        removeOutofBoundsPipe();
     }
 }

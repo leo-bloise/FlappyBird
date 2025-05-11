@@ -38,7 +38,7 @@ public class GameMediatorImpl implements GameMediator {
         actions.add(new MovePipesAction(pipes.stream().toList()));
     }
     @Override
-    public void notify(GameEvent event) {
+    public synchronized void notify(GameEvent event) {
         switch (event) {
             case GameEvent.JUMP_BIRD -> handleJump();
             case GameEvent.MOVE -> handleMove();
