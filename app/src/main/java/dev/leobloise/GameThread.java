@@ -1,4 +1,6 @@
 package dev.leobloise;
+import dev.leobloise.actions.GameAction;
+import dev.leobloise.entities.GameMediator;
 import dev.leobloise.entities.Moveable;
 
 import java.awt.*;
@@ -6,16 +8,16 @@ import java.util.Collection;
 
 public class GameThread extends Thread {
     private final Canvas canvas;
-    private final Collection<Moveable> moveables;
+    private final GameMediator gameMediator;
     public GameThread(
             Canvas gameCanvas,
-            Collection<Moveable> moveables
+            GameMediator gameMediator
     ) {
         this.canvas = gameCanvas;
-        this.moveables = moveables;
+        this.gameMediator = gameMediator;
     }
     private synchronized void update() {
-        moveables.forEach(Moveable::move);
+        gameMediator.flushActions().forEach(GameAction::execute);
     }
     private void render() {
         canvas.repaint();

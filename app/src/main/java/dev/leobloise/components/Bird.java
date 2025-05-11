@@ -12,17 +12,29 @@ public class Bird implements Moveable {
     private final ImageAsset birdMidFlap;
     private final ImageAsset birdDownFlap;
     private final ImageAsset birdUpFlap;
+    private int speed = -10;
     public Bird(
             ImageAsset birdUpFlap,
             ImageAsset birdMidFlap,
-            ImageAsset birdDownFlap
+            ImageAsset birdDownFlap,
+            int x,
+            int y
     ) {
         this.birdDownFlap = birdDownFlap;
         this.birdMidFlap = birdMidFlap;
         this.birdUpFlap = birdUpFlap;
+        this.x = x;
+        this.y = y;
     }
     public void move() {
-        y += 2;
+        speed = -10;
+        y += speed;
+        y = Math.max(y, 1);
+    }
+    public void applyGravity() {
+        speed += 1;
+        speed = Math.min(10, speed);
+        y += speed;
     }
     @Override
     public void renderOn(Graphics g) {
