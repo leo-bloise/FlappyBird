@@ -8,7 +8,7 @@ public class MoveBirdAction implements GameAction{
         this.bird = bird;
     }
     @Override
-    public void execute() {
+    public synchronized void execute() {
         bird.move();
     }
 }

@@ -11,7 +11,7 @@ public class MoveBackgroundAction implements GameAction {
         this.bird = bird;
     }
     @Override
-    public void execute() {
+    public synchronized void execute() {
         background.move();
         bird.applyGravity();
     }

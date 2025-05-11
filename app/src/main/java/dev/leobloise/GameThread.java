@@ -1,10 +1,7 @@
 package dev.leobloise;
 import dev.leobloise.actions.GameAction;
 import dev.leobloise.entities.GameMediator;
-import dev.leobloise.entities.Moveable;
-
 import java.awt.*;
-import java.util.Collection;
 
 public class GameThread extends Thread {
     private final Canvas canvas;
