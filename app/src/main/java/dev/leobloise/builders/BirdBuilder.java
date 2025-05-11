@@ -1,7 +1,6 @@
 package dev.leobloise.builders;
 
 import dev.leobloise.components.Bird;
-import dev.leobloise.images.BirdMidFlap;
 import dev.leobloise.images.ImageAsset;
 
 public class BirdBuilder {
@@ -16,9 +15,9 @@ public class BirdBuilder {
         x -= (birdMidFlap.getWidth() / 2);
         y -= (birdMidFlap.getHeight() / 2);
         bird = new Bird(
+                assetsBuilder.birdUpFlap(),
                 assetsBuilder.birdMidFlap(),
-                assetsBuilder.birdMidFlap(),
-                assetsBuilder.birdMidFlap(),
+                assetsBuilder.birdDownFlap(),
                 x,
                 y
         );

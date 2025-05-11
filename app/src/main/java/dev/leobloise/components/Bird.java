@@ -4,11 +4,12 @@ import dev.leobloise.entities.Moveable;
 import dev.leobloise.images.ImageAsset;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 public class Bird implements Moveable {
-    private int x = 0;
-    private int y = 0;
+    private int x;
+    private int y;
     private final ImageAsset birdMidFlap;
     private final ImageAsset birdDownFlap;
     private final ImageAsset birdUpFlap;
@@ -38,7 +39,13 @@ public class Bird implements Moveable {
     }
     @Override
     public void renderOn(Graphics g) {
-        g.drawImage(birdMidFlap.read(), x, y, new ImageObserver() {
+        BufferedImage img = birdUpFlap.read();
+        if (speed == 0) {
+            img = birdMidFlap.read();
+        } else if (speed > 0) {
+            img = birdDownFlap.read();
+        }
+        g.drawImage(img, x, y, new ImageObserver() {
             @Override
             public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
                 return false;
