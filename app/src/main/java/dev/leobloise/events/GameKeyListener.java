@@ -19,7 +19,6 @@ public class GameKeyListener implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE -> gameMediator.notify(GameEvent.JUMP_BIRD);
         }
-
     }
     @Override
     public void keyReleased(KeyEvent e) {

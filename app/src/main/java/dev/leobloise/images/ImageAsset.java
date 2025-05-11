@@ -15,6 +15,10 @@ public abstract class ImageAsset {
     public ImageAsset(String filename) {
         this.filename = filename;
     }
+    public ImageAsset(BufferedImage image) {
+        this.filename = null;
+        this.image = image;
+    }
     public BufferedImage read() {
         if (image != null) return image;
         try(InputStream imageInputStream = classLoader.getResourceAsStream(filename);) {
