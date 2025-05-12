@@ -28,7 +28,7 @@ public class CheckCollisionAction implements GameAction {
         while (l <= r) {
             int m = l + (r - l) / 2;
             PipeGreen pipeGreen = pipeGreens.get(m);
-            int distanceFromBegin = pipeGreen.getX() - bird.getX();
+            int distanceFromBegin = pipeGreen.getX() - (bird.getX() + bird.getWidth());
             int distanceFromEnd = (pipeGreen.getX() + 52) - bird.getX();
             if (distanceFromBegin < 0 && distanceFromEnd < 0) {
                 l = m + 1;
@@ -39,10 +39,11 @@ public class CheckCollisionAction implements GameAction {
             }
             r = m -1;
         }
-        return pipeGreens.getFirst();
+        return null;
     }
     private boolean collideWithUpPipe() {
         PipeGreen pipeGreen = closestPipe();
+        if (pipeGreen == null) return false;
         CollidablePipeArea collidablePipeArea = pipeGreen.getCollidablePipeArea();
         return (bird.getX() + bird.getWidth()) >= collidablePipeArea.xu() &&
                 bird.getX() <= (collidablePipeArea.xu() + 50) &&
@@ -51,6 +52,7 @@ public class CheckCollisionAction implements GameAction {
     }
     private boolean collideWithBottomPipe() {
         PipeGreen pipeGreen = closestPipe();
+        if (pipeGreen == null) return false;
         CollidablePipeArea collidablePipeArea = pipeGreen.getCollidablePipeArea();
         return (bird.getX() + bird.getWidth()) >= collidablePipeArea.xb() &&
                 bird.getX() <= (collidablePipeArea.xb() + 50) &&
