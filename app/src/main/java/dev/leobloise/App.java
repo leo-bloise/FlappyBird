@@ -20,8 +20,8 @@ public class App {
         BirdBuilder birdBuilder = new BirdBuilder(assetsBuilder);
         Bird bird = birdBuilder.build((assetsBuilder.buildBackground().getWidth() / 2), (assetsBuilder.buildBackground().getHeight() / 2));
         GameCanvas gameCanvas = new GameCanvas(new ArrayList<>(
-                Arrays.asList(assetsBuilder.buildBackground(), bird, score)
-        ));
+                Arrays.asList(assetsBuilder.buildBackground(), bird)
+        ), score);
         GameThread gameThread = new GameThread(
                 gameCanvas,
                 new GameMediatorImpl(gameCanvas, bird, assetsBuilder.buildBackground(), score)

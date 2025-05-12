@@ -7,12 +7,15 @@ import java.util.ArrayList;
 
 public class GameCanvas extends Canvas {
     private final ArrayList<Renderable> renderables;
+    private final Score score;
     private Image offscreenBuffer;
     public GameCanvas(
-            ArrayList<Renderable> renderables
+            ArrayList<Renderable> renderables,
+            Score score
     ) {
         super();
         this.renderables = renderables;
+        this.score = score;
     }
     public void addToCanvas(Renderable renderable) {
         renderables.add(renderable);
@@ -21,6 +24,7 @@ public class GameCanvas extends Canvas {
         if (offscreenBuffer == null) offscreenBuffer = createImage(getWidth(), getHeight());
         Graphics bufferGraphics = offscreenBuffer.getGraphics();
         renderables.forEach((Renderable re) -> re.renderOn(bufferGraphics));
+        score.renderOn(bufferGraphics);
     }
     @Override
     public void update(Graphics g) {
