@@ -1,3 +1,4 @@
+// TODO: Check removing the buffered image from the method.
 package dev.leobloise.components;
 
 import java.awt.*;
@@ -37,7 +38,6 @@ public class PipeGreenFactory {
         return (int) ((Math.random() * (maxUp - maxDown)) + maxDown);
     }
     private BufferedImage merge(PipeGreen upPipe, PipeGreen downPipe) {
-        // #TO-DO: Check removing the buffered image from the method.
         BufferedImage result = new BufferedImage(screenDimension.width, screenDimension.height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics2D = result.createGraphics();
         upPipe.renderOn(graphics2D, 180);

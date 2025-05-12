@@ -2,5 +2,6 @@ package dev.leobloise.events;
 
 public enum GameEvent {
     JUMP_BIRD,
-    MOVE
+    MOVE,
+    ADD_SCORE
 }

@@ -8,7 +8,6 @@ import dev.leobloise.events.GameEvent;
 import dev.leobloise.events.GameKeyListener;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class GameMediatorImpl implements GameMediator {
     private final Bird bird;
@@ -16,6 +15,7 @@ public class GameMediatorImpl implements GameMediator {
     private final LinkedList<GameAction> actions = new LinkedList<>();
     private final Deque<PipeGreen> pipes = new ArrayDeque<>();
     private final GameCanvas gameCanvas;
+    private int score = 0;
     public GameMediatorImpl(
             GameCanvas gameCanvas,
             Bird bird,
@@ -38,11 +38,15 @@ public class GameMediatorImpl implements GameMediator {
         actions.add(new MovePipesAction(pipes.stream().toList()));
         actions.add(new CheckCollisionAction(bird, pipes.stream().toList()));
     }
+    private void incrementScore() {
+        score++;
+    }
     @Override
     public synchronized void notify(GameEvent event) {
         switch (event) {
             case GameEvent.JUMP_BIRD -> handleJump();
             case GameEvent.MOVE -> handleMove();
+            case GameEvent.ADD_SCORE -> incrementScore();
         }
     }
     @Override

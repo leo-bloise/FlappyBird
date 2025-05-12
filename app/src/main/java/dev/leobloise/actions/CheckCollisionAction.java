@@ -1,3 +1,4 @@
+// TODO: Replace 50 for the real size of the pipeGreen
 package dev.leobloise.actions;
 
 import dev.leobloise.components.Bird;
@@ -16,33 +17,44 @@ public class CheckCollisionAction implements GameAction {
         this.bird = bird;
         this.pipeGreens = pipeGreens;
     }
-    private boolean collideWithUpPipe() {
-        for (PipeGreen pipeGreen : pipeGreens) {
-            CollidablePipeArea collidablePipeArea = pipeGreen.getCollidablePipeArea();
-            if (
-                    (bird.getX() + bird.getWidth()) >= collidablePipeArea.xu() &&
-                            bird.getX() <= (collidablePipeArea.xu() + 50) &&
-                            (bird.getY() + bird.getHeight()) >= (collidablePipeArea.yu()) &&
-                            bird.getY() <= collidablePipeArea.yu() + collidablePipeArea.hu()
-            ) return true;
+    private PipeGreen closestPipe() {
+        int l = 0;
+        int r = pipeGreens.size() - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            PipeGreen pipeGreen = pipeGreens.get(m);
+            int distanceFromBegin = pipeGreen.getX() - bird.getX();
+            int distanceFromEnd = (pipeGreen.getX() + 52) - bird.getX();
+            if (distanceFromBegin < 0 && distanceFromEnd < 0) {
+                l = m + 1;
+                continue;
+            }
+            if (distanceFromBegin <= 20) {
+                return pipeGreen;
+            }
+            r = m -1;
         }
-        return false;
+        return pipeGreens.getFirst();
+    }
+    private boolean collideWithUpPipe() {
+        PipeGreen pipeGreen = closestPipe();
+        CollidablePipeArea collidablePipeArea = pipeGreen.getCollidablePipeArea();
+        return (bird.getX() + bird.getWidth()) >= collidablePipeArea.xu() &&
+                bird.getX() <= (collidablePipeArea.xu() + 50) &&
+                (bird.getY() + bird.getHeight()) >= (collidablePipeArea.yu()) &&
+                bird.getY() <= collidablePipeArea.yu() + collidablePipeArea.hu();
     }
     private boolean collideWithBottomPipe() {
-        // #TO-DO REPLACE 50 for the size of the spritee
-        for (PipeGreen pipeGreen : pipeGreens) {
-            CollidablePipeArea collidablePipeArea = pipeGreen.getCollidablePipeArea();
-            if (
-                    (bird.getX() + bird.getWidth()) >= collidablePipeArea.xb() &&
-                            bird.getX() <= (collidablePipeArea.xb() + 50) &&
-                            (bird.getY() + bird.getHeight()) >= (collidablePipeArea.yb()) &&
-                            bird.getY() <= collidablePipeArea.yb() + collidablePipeArea.hb()
-            ) return true;
-        }
-        return false;
+        PipeGreen pipeGreen = closestPipe();
+        CollidablePipeArea collidablePipeArea = pipeGreen.getCollidablePipeArea();
+        return (bird.getX() + bird.getWidth()) >= collidablePipeArea.xb() &&
+                bird.getX() <= (collidablePipeArea.xb() + 50) &&
+                (bird.getY() + bird.getHeight()) >= (collidablePipeArea.yb()) &&
+                bird.getY() <= collidablePipeArea.yb() + collidablePipeArea.hb();
     }
     @Override
     public void execute() {
+        if (pipeGreens.isEmpty()) return;
         if (this.collideWithBottomPipe() || this.collideWithUpPipe()) {
             System.out.println("Collision detected");
         }
