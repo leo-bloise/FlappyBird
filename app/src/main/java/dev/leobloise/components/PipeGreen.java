@@ -35,7 +35,7 @@ public class PipeGreen extends ImageAsset implements Moveable {
     }
     @Override
     public void move() {
-        x--;
+        x -= 2;
         if (collidablePipeArea != null) {
             setCollidablePipeArea(new CollidablePipeArea(
                     x,

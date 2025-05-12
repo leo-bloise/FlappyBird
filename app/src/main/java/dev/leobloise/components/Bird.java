@@ -13,7 +13,8 @@ public class Bird implements Moveable {
     private final ImageAsset birdMidFlap;
     private final ImageAsset birdDownFlap;
     private final ImageAsset birdUpFlap;
-    private int speed = -10;
+    private final static int SPEED = -12;
+    private int speed = SPEED;
     public Bird(
             ImageAsset birdUpFlap,
             ImageAsset birdMidFlap,
@@ -28,7 +29,7 @@ public class Bird implements Moveable {
         this.y = y;
     }
     public void move() {
-        speed = -10;
+        speed = SPEED;
         y += speed;
         y = Math.max(y, 1);
     }
