@@ -37,7 +37,7 @@ public class GameThread extends Thread {
     }
     private void gameLoop() {
         long nextDrawInterval = getDrawInterval() + System.nanoTime();
-        while (true) {
+        while (!gameMediator.isGameOver()) {
             update();
             render();
             nextDrawInterval = waitUntil(nextDrawInterval);

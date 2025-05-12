@@ -4,18 +4,23 @@ package dev.leobloise.actions;
 import dev.leobloise.components.Bird;
 import dev.leobloise.components.CollidablePipeArea;
 import dev.leobloise.components.PipeGreen;
+import dev.leobloise.entities.GameMediator;
+import dev.leobloise.events.GameEvent;
 
 import java.util.List;
 
 public class CheckCollisionAction implements GameAction {
     private final Bird bird;
     private final List<PipeGreen> pipeGreens;
+    private final GameMediator gameMediator;
     public CheckCollisionAction(
             Bird bird,
-            List<PipeGreen> pipeGreens
+            List<PipeGreen> pipeGreens,
+            GameMediator gameMediator
     ) {
         this.bird = bird;
         this.pipeGreens = pipeGreens;
+        this.gameMediator = gameMediator;
     }
     private PipeGreen closestPipe() {
         int l = 0;
@@ -56,7 +61,7 @@ public class CheckCollisionAction implements GameAction {
     public void execute() {
         if (pipeGreens.isEmpty()) return;
         if (this.collideWithBottomPipe() || this.collideWithUpPipe()) {
-            System.out.println("Collision detected");
+            gameMediator.notify(GameEvent.GAME_OVER);
         }
     }
 }

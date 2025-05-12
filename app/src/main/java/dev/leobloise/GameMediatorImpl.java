@@ -15,6 +15,7 @@ public class GameMediatorImpl implements GameMediator {
     private final LinkedList<GameAction> actions = new LinkedList<>();
     private final Deque<PipeGreen> pipes = new ArrayDeque<>();
     private final GameCanvas gameCanvas;
+    private boolean gameOver = false;
     private Score score;
     public GameMediatorImpl(
             GameCanvas gameCanvas,
@@ -28,6 +29,9 @@ public class GameMediatorImpl implements GameMediator {
         this.score = score;
         setUp();
     }
+    public boolean isGameOver() {
+        return gameOver;
+    }
     private void setUp() {
         gameCanvas.addKeyListener(new GameKeyListener(this));
     }
@@ -38,11 +42,15 @@ public class GameMediatorImpl implements GameMediator {
         actions.add(new MoveBackgroundAction(background, bird));
         actions.add(new AddPipeGreenAction(pipes, gameCanvas));
         actions.add(new MovePipesAction(pipes.stream().toList()));
-        actions.add(new CheckCollisionAction(bird, pipes.stream().toList()));
+        actions.add(new CheckCollisionAction(bird, pipes.stream().toList(), this));
         actions.add(new IncrementScoreAction(bird, pipes.stream().toList(), this));
     }
     private void incrementScore() {
         score.increment();
+    }
+    private void setGameOver() {
+        actions.clear();
+        gameOver = true;
     }
     @Override
     public synchronized void notify(GameEvent event) {
@@ -50,6 +58,7 @@ public class GameMediatorImpl implements GameMediator {
             case GameEvent.JUMP_BIRD -> handleJump();
             case GameEvent.MOVE -> handleMove();
             case GameEvent.ADD_SCORE -> incrementScore();
+            case GameEvent.GAME_OVER -> setGameOver();
         }
     }
     @Override
