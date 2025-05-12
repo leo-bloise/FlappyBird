@@ -20,7 +20,7 @@ public class GameThread extends Thread {
         canvas.repaint();
     }
     private long getDrawInterval() {
-        int FPS = 30;
+        int FPS = 60;
         return 1000000000 / FPS;
     }
     private long waitUntil(long nextDrawInterval) {

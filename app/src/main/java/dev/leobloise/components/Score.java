@@ -1,6 +1,7 @@
 package dev.leobloise.components;
 
 import dev.leobloise.builders.AssetsBuilder;
+import dev.leobloise.entities.GameAudio;
 import dev.leobloise.entities.Renderable;
 import dev.leobloise.images.ImageAsset;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 public class Score implements Renderable {
     private int score;
     private final Dimension screenDimension;
+    private GameAudio gameAudio;
     private final static Map<Integer, ImageAsset> maps = new HashMap<>();
     public static void init(AssetsBuilder assetsBuilder) {
         if (!maps.isEmpty()) return;
@@ -28,9 +30,16 @@ public class Score implements Renderable {
     public Score(int score, Dimension screenDimension) {
         this.score = score;
         this.screenDimension = screenDimension;
+        loadAudio();
+    }
+    private void loadAudio() {
+        GameAudio gameAudio = new GameAudio("point.wav");
+        gameAudio.read();
+        this.gameAudio = gameAudio;
     }
     public void increment() {
         score++;
+        gameAudio.play();
     }
     @Override
     public void renderOn(Graphics canvas) {

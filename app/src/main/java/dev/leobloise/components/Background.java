@@ -23,6 +23,6 @@ public class Background extends ImageAsset implements Moveable {
     }
     @Override
     public void move() {
-        x -= 2;
+        x--;
     }
 }

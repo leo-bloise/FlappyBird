@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        AssetsBuilder assetsBuilder = new AssetsBuilder();
+        AssetsBuilder assetsBuilder = AssetsBuilder.getInstance();
         PipeGreenFactory.create(assetsBuilder.buildBackground().getDimension());
         Score.init(assetsBuilder);
         Score score = new Score(0, assetsBuilder.buildBackground().getDimension());
