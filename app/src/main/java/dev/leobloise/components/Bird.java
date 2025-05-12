@@ -37,6 +37,18 @@ public class Bird implements Moveable {
         speed = Math.min(10, speed);
         y += speed;
     }
+    public int getWidth() {
+        return birdDownFlap.getWidth();
+    }
+    public int getHeight() {
+        return birdDownFlap.getHeight();
+    }
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
     @Override
     public void renderOn(Graphics g) {
         BufferedImage img = birdUpFlap.read(-30);

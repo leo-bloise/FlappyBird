@@ -36,6 +36,7 @@ public class GameMediatorImpl implements GameMediator {
         actions.add(new MoveBackgroundAction(background, bird));
         actions.add(new AddPipeGreenAction(pipes, gameCanvas));
         actions.add(new MovePipesAction(pipes.stream().toList()));
+        actions.add(new CheckCollisionAction(bird, pipes.stream().toList()));
     }
     @Override
     public synchronized void notify(GameEvent event) {

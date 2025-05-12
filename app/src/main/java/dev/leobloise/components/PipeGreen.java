@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 public class PipeGreen extends ImageAsset implements Moveable {
     private int x;
     private int y;
+    private CollidablePipeArea collidablePipeArea;
     public PipeGreen(int x, int y) {
         super("pipe-green.png");
         this.x = x;
@@ -19,9 +20,25 @@ public class PipeGreen extends ImageAsset implements Moveable {
         this.x = x;
         this.y = y;
     }
+    public void setCollidablePipeArea(CollidablePipeArea collidablePipeArea) {
+        this.collidablePipeArea = collidablePipeArea;
+    }
+    public CollidablePipeArea getCollidablePipeArea() {
+        return this.collidablePipeArea;
+    }
     @Override
     public void move() {
         x--;
+        if (collidablePipeArea != null) {
+            setCollidablePipeArea(new CollidablePipeArea(
+                    x,
+                    collidablePipeArea.yu(),
+                    x,
+                    collidablePipeArea.yb(),
+                    collidablePipeArea.hu(),
+                    collidablePipeArea.hb()
+            ));
+        }
      }
     @Override
     public void renderOn(Graphics canvas) {
