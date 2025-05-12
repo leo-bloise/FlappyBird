@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 public class PipeGreen extends ImageAsset implements Moveable {
     private int x;
     private int y;
+    private boolean passed;
     private CollidablePipeArea collidablePipeArea;
     public PipeGreen(int x, int y) {
         super("pipe-green.png");
@@ -19,6 +20,12 @@ public class PipeGreen extends ImageAsset implements Moveable {
         super(image);
         this.x = x;
         this.y = y;
+    }
+    public boolean getPassed() {
+        return passed;
+    }
+    public void setPassed(boolean passed) {
+        this.passed = passed;
     }
     public void setCollidablePipeArea(CollidablePipeArea collidablePipeArea) {
         this.collidablePipeArea = collidablePipeArea;

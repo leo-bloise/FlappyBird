@@ -37,8 +37,10 @@ public class GameMediatorImpl implements GameMediator {
         actions.add(new AddPipeGreenAction(pipes, gameCanvas));
         actions.add(new MovePipesAction(pipes.stream().toList()));
         actions.add(new CheckCollisionAction(bird, pipes.stream().toList()));
+        actions.add(new IncrementScoreAction(bird, pipes.stream().toList(), this));
     }
     private void incrementScore() {
+        System.out.println("score!");
         score++;
     }
     @Override

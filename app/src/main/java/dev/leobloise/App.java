@@ -27,11 +27,7 @@ public class App {
                 assetsBuilder.buildBackground().getDimension(),
                 gameCanvas
         );
-        assetsBuilder = null;
-        birdBuilder = null;
-        bird = null;
         mainWindow.display();
-        System.gc();
         gameThread.start();
     }
 }
