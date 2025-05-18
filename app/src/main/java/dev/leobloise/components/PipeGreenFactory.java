@@ -23,7 +23,7 @@ public class PipeGreenFactory {
      * @return int
      */
     private int getMaxDown() { // For the current background, it must be 460
-        return (int) Math.floor(screenDimension.getHeight() * 0.8984375);
+        return (int) Math.floor(screenDimension.getHeight() * 0.75);
     }
     /**
      * Determines the biggest y position where we can begin rendering the pipe

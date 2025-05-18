@@ -13,7 +13,7 @@ public class Bird implements Moveable {
     private final ImageAsset birdMidFlap;
     private final ImageAsset birdDownFlap;
     private final ImageAsset birdUpFlap;
-    private final static int SPEED = -11;
+    private final static int SPEED = -13;
     private int speed = SPEED;
     public Bird(
             ImageAsset birdUpFlap,

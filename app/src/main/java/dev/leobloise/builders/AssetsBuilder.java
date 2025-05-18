@@ -1,6 +1,7 @@
 package dev.leobloise.builders;
 
 import dev.leobloise.components.Background;
+import dev.leobloise.components.Base;
 import dev.leobloise.images.*;
 
 public class AssetsBuilder {
@@ -9,6 +10,7 @@ public class AssetsBuilder {
         if (instance == null) instance = new AssetsBuilder();
         return instance;
     }
+    private Base base;
     private Background background;
     private ImageAsset birdMidFlap;
     private ImageAsset birdDownFlap;
@@ -24,6 +26,11 @@ public class AssetsBuilder {
     private ImageAsset score8Number;
     private ImageAsset score9Number;
     private AssetsBuilder() {}
+    public Base buildBase(int screenHeight, int screenWidth) {
+        if(base!=null) return base;
+        base = new Base(screenHeight, screenWidth);
+        return base;
+    }
     public ImageAsset getScore0Number() {
         if (score0Number != null) return score0Number;
         score0Number = new ScoreDigit("0.png");

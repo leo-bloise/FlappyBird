@@ -11,22 +11,22 @@ import java.util.List;
 
 public class GameMediatorImpl implements GameMediator {
     private final Bird bird;
-    private final Moveable background;
     private final LinkedList<GameAction> actions = new LinkedList<>();
     private final Deque<PipeGreen> pipes = new ArrayDeque<>();
     private final GameCanvas gameCanvas;
     private boolean gameOver = false;
     private Score score;
+    private final Moveable base;
     public GameMediatorImpl(
             GameCanvas gameCanvas,
             Bird bird,
-            Moveable background,
-            Score score
+            Score score,
+            Base base
     ) {
         this.bird = bird;
-        this.background = background;
         this.gameCanvas = gameCanvas;
         this.score = score;
+        this.base = base;
         setUp();
     }
     public boolean isGameOver() {
@@ -39,7 +39,7 @@ public class GameMediatorImpl implements GameMediator {
         actions.add(new MoveBirdAction(bird));
     }
     private void handleMove() {
-        actions.add(new MoveBackgroundAction(background, bird));
+        actions.add(new MoveBaseAction(base, bird));
         actions.add(new AddPipeGreenAction(pipes, gameCanvas));
         actions.add(new MovePipesAction(pipes.stream().toList()));
         actions.add(new CheckCollisionAction(bird, pipes.stream().toList(), this));

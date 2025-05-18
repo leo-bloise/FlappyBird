@@ -2,10 +2,8 @@ package dev.leobloise;
 
 import dev.leobloise.builders.AssetsBuilder;
 import dev.leobloise.builders.BirdBuilder;
-import dev.leobloise.components.Bird;
-import dev.leobloise.components.GameCanvas;
-import dev.leobloise.components.PipeGreenFactory;
-import dev.leobloise.components.Score;
+import dev.leobloise.components.*;
+import dev.leobloise.entities.Renderable;
 import dev.leobloise.windows.MainWindow;
 
 import java.util.ArrayList;
@@ -19,12 +17,13 @@ public class App {
         Score score = new Score(0, assetsBuilder.buildBackground().getDimension());
         BirdBuilder birdBuilder = new BirdBuilder(assetsBuilder);
         Bird bird = birdBuilder.build((assetsBuilder.buildBackground().getWidth() / 2), (assetsBuilder.buildBackground().getHeight() / 2));
+        Base base = assetsBuilder.buildBase(assetsBuilder.buildBackground().getHeight(), assetsBuilder.buildBackground().getWidth());
         GameCanvas gameCanvas = new GameCanvas(new ArrayList<>(
                 Arrays.asList(assetsBuilder.buildBackground(), bird)
-        ), score);
+        ), score, base);
         GameThread gameThread = new GameThread(
                 gameCanvas,
-                new GameMediatorImpl(gameCanvas, bird, assetsBuilder.buildBackground(), score)
+                new GameMediatorImpl(gameCanvas, bird, score, base)
         );
         MainWindow mainWindow = new MainWindow(
                 assetsBuilder.buildBackground().getDimension(),

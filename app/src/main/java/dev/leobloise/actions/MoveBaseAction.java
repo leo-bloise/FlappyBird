@@ -3,16 +3,16 @@ package dev.leobloise.actions;
 import dev.leobloise.components.Bird;
 import dev.leobloise.entities.Moveable;
 
-public class MoveBackgroundAction implements GameAction {
-    private final Moveable background;
+public class MoveBaseAction implements GameAction {
+    private final Moveable base;
     private final Bird bird;
-    public MoveBackgroundAction(Moveable background, Bird bird) {
-        this.background = background;
+    public MoveBaseAction(Moveable base, Bird bird) {
+        this.base = base;
         this.bird = bird;
     }
     @Override
     public synchronized void execute() {
-        background.move();
+        base.move();
         bird.applyGravity();
     }
 }
