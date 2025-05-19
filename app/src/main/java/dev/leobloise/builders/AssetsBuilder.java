@@ -12,9 +12,6 @@ public class AssetsBuilder {
     }
     private Base base;
     private Background background;
-    private ImageAsset birdMidFlap;
-    private ImageAsset birdDownFlap;
-    private ImageAsset birdUpFlap;
     private ImageAsset score0Number;
     private ImageAsset score1Number;
     private ImageAsset score2Number;
@@ -25,6 +22,7 @@ public class AssetsBuilder {
     private ImageAsset score7Number;
     private ImageAsset score8Number;
     private ImageAsset score9Number;
+    private ImageAsset birdSprite;
     private AssetsBuilder() {}
     public Base buildBase(int screenHeight, int screenWidth) {
         if(base!=null) return base;
@@ -86,19 +84,9 @@ public class AssetsBuilder {
         background = new Background("background.png");
         return background;
     }
-    public ImageAsset birdMidFlap() {
-        if (birdMidFlap != null) return birdMidFlap;
-        birdMidFlap = new BirdMidFlap("bird-midflap.png");
-        return birdMidFlap;
-    }
-    public ImageAsset birdDownFlap() {
-        if (birdDownFlap != null) return birdDownFlap;
-        birdDownFlap = new BirdDownFlap("bird-downflap.png");
-        return birdDownFlap;
-    }
-    public ImageAsset birdUpFlap() {
-        if (this.birdUpFlap != null) return this.birdUpFlap;
-        birdUpFlap = new BirdUpFlap("bird-upflap.png");
-        return birdUpFlap;
+    public ImageAsset buildBirdSprite() {
+        if(birdSprite != null) return birdSprite;
+        birdSprite = new BirdSprite();
+        return birdSprite;
     }
 }

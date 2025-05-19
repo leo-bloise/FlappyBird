@@ -11,13 +11,11 @@ public class BirdBuilder {
     }
     public Bird build(int x, int y) {
         if (bird != null) return bird;
-        ImageAsset birdMidFlap = assetsBuilder.birdMidFlap();
-        x -= (birdMidFlap.getWidth() / 2);
-        y -= (birdMidFlap.getHeight() / 2);
+        ImageAsset birdSprite = assetsBuilder.buildBirdSprite();
+        x -= (birdSprite.getWidth() / 2);
+        y -= (birdSprite.getHeight() / 2);
         bird = new Bird(
-                assetsBuilder.birdUpFlap(),
-                assetsBuilder.birdMidFlap(),
-                assetsBuilder.birdDownFlap(),
+                birdSprite,
                 x,
                 y
         );

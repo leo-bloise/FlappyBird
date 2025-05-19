@@ -3,7 +3,6 @@ package dev.leobloise;
 import dev.leobloise.builders.AssetsBuilder;
 import dev.leobloise.builders.BirdBuilder;
 import dev.leobloise.components.*;
-import dev.leobloise.entities.Renderable;
 import dev.leobloise.windows.MainWindow;
 
 import java.util.ArrayList;
