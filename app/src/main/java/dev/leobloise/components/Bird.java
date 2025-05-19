@@ -27,6 +27,7 @@ public class Bird implements Moveable {
     public void move() {
         speed = SPEED;
         y += speed;
+        y = Math.max(0, y);
     }
     public void applyGravity() {
         speed += 1;

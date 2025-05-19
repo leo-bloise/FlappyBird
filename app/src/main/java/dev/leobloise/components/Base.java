@@ -22,6 +22,9 @@ public class Base extends ImageAsset implements Renderable, Moveable {
         BufferedImage bufferedImage = read();
         this.y = height - bufferedImage.getHeight();
     }
+    public int getY() {
+        return this.y;
+    }
     @Override
     public void renderOn(Graphics canvas) {
         if(x < (-1*screenWidth)) {

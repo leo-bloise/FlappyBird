@@ -3,7 +3,6 @@ package dev.leobloise;
 import dev.leobloise.actions.*;
 import dev.leobloise.components.*;
 import dev.leobloise.entities.GameMediator;
-import dev.leobloise.entities.Moveable;
 import dev.leobloise.events.GameEvent;
 import dev.leobloise.events.GameKeyListener;
 import java.util.*;
@@ -15,8 +14,8 @@ public class GameMediatorImpl implements GameMediator {
     private final Deque<PipeGreen> pipes = new ArrayDeque<>();
     private final GameCanvas gameCanvas;
     private boolean gameOver = false;
-    private Score score;
-    private final Moveable base;
+    private final Score score;
+    private final Base base;
     public GameMediatorImpl(
             GameCanvas gameCanvas,
             Bird bird,
@@ -39,7 +38,7 @@ public class GameMediatorImpl implements GameMediator {
         actions.add(new MoveBirdAction(bird));
     }
     private void handleMove() {
-        actions.add(new MoveBaseAction(base, bird));
+        actions.add(new MoveBaseAction(base, bird, this));
         actions.add(new AddPipeGreenAction(pipes, gameCanvas));
         actions.add(new MovePipesAction(pipes.stream().toList()));
         actions.add(new CheckCollisionAction(bird, pipes.stream().toList(), this));
