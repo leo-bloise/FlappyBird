@@ -54,7 +54,7 @@ public class Bird implements Moveable {
             return Assets.rotate(bufferedImage, degree);
         }
         if(speed >= 2) {
-            degree += (speed * 15) - 5;
+            degree += speed * 11;
         }
         return Assets.rotate(bufferedImage, degree);
     }
@@ -64,7 +64,6 @@ public class Bird implements Moveable {
         BufferedImage bufferedImage = getBufferedImage();
         Graphics bufferG = bufferedImage.getGraphics();
         bufferG.drawImage(img, 0, 0, getWidth(), getHeight(), 0, currFrame * getHeight(), getWidth(), getHeight() * (currFrame + 1), null);
-        Assets.rotate(bufferedImage, 120);
         g.drawImage(rotateIfNeeded(bufferedImage), x, y, null);
         if (fps < 6) {
             fps++;
