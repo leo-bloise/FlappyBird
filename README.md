@@ -3,7 +3,7 @@
     Flappy Bird
 </h1>
 
-![](./flappy_bird_demo.mkv)
+![](./flappy_bird_demo.mp4)
 
 The game isn't complete, but I've decided to stop improving this project to focus more on web related tech. I learned a lot from this project and I'll keep my path to learn more about development and games. 
 
