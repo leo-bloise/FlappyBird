@@ -3,7 +3,7 @@
     Flappy Bird
 </h1>
 
-The game is not complete and it has a terrible performance, but I decided to stop improving it. I learned a lot from this project and I'll keep my path to learn more about development and games, in general.
+I learned a lot from this project and I'll keep my path to learn more about development and games, but I've decided to stop improving this project to focus more on web related content.
 
 Basically, it has all the functionality it needs:
 - Collision detection (using binary search).
